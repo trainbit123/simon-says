@@ -1,7 +1,7 @@
 let gameseq=[];
 let userseq=[];
 
-let btns=['purple' ,'green','orange',,'violet'];
+let btns=['purple' ,'green','orange','violet'];
 
 let started = false;
 let level =0;
@@ -9,16 +9,17 @@ let highest=level;
 
 let h2 = document.querySelector("h2");
 
-document.addEventListener("keypress",function (){
+document.addEventListener("keypress",function () {
     if(started==false){
         started=true;
         console.log("game started");
-        levelup();
+        
     }
+    levelup();
 })
 
 
-function levelup(){
+function levelup() {
     userseq=[];
     level++;
     h2.innerText=`Level:${level}`;
@@ -38,7 +39,7 @@ function gameflash(btn){
     },250)
 }
 
-function userflash(){
+function userflash(btn){
     btn.classList.add("userflash");
     setTimeout(() => {
          btn.classList.remove("userflash");
@@ -59,8 +60,12 @@ function btnpressbyuser(){
 }
 function checkseq(idx){
     if(userseq[idx]==gameseq[idx]){
-        setTimeout(levelup,1000);
+        if(userseq.length == gameseq.length){
+              setTimeout(levelup,1000);
         highestscore();
+
+        }
+      
     }
     else{
        
